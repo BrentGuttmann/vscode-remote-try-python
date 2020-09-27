@@ -42,5 +42,9 @@
 
 	"containerEnv": {
 		"TEAMS_CLOUD_DEPLOYMENT_ENV": "jun1"
+	},
+	
+	"remoteEnv": { 
+		"PATH": "${containerEnv:PATH}:${localEnv:HOME}//.dotnet/tools"
 	}
 }
