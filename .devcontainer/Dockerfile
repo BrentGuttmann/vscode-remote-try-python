@@ -11,9 +11,7 @@ RUN mkdir -p ${PIP_TARGET} \
     && echo "if [ \"\$(stat -c '%U' ${PIP_TARGET})\" != \"vscode\" ]; then chown -R vscode:root ${PIP_TARGET}; fi" \
         | tee -a /root/.bashrc /home/vscode/.bashrc /root/.zshrc >> /home/vscode/.zshrc 
 
-RUN apt-get update \
-    && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends azure-cli
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
 RUN az extension add --source https://modstestshared.blob.core.windows.net/tools/teamscloud-0.2.3-py2.py3-none-any.whl
 RUN az extension add --source https://modstestshared.blob.core.windows.net/tools/teamsdev-0.0.2-py2.py3-none-any.whl
